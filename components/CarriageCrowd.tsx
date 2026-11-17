@@ -15,6 +15,7 @@ export default function CarriageCrowd() {
 
   // 1. Fetch Supabase 數據
   const fetchReports = async () => {
+    if (!supabase) return;
     const { data } = await supabase
       .from("crowd_reports")
       .select("*")
@@ -36,6 +37,7 @@ export default function CarriageCrowd() {
 
   // 2. 用戶即時報料
   const submitReport = async (carNum: number, crowd: string, ac: string) => {
+    if (!supabase) return;
     await supabase.from("crowd_reports").insert([
       {
         transport_type: "MTR",
